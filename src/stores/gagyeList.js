@@ -11,12 +11,7 @@ export const useGagyeListStore = defineStore('todoList', () => {
   const BASE_URI = '/api/gagye';
   // state를 직접 return 하는건 비권장
   const state = reactive({
-    gagyeList: [
-      { id: 1, todo: 'ES6학습', done: false },
-      { id: 2, todo: 'React학습', done: false },
-      { id: 3, todo: 'ContextAPI 학습', done: true },
-      { id: 4, todo: '야구경기 관람', done: false },
-    ],
+    gagyeList: [],
     categoryList: [],
   });
 
