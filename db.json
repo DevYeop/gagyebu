@@ -1,0 +1,64 @@
+{
+  "gagye": [
+    {
+      "id": "1",
+      "date": "0610",
+      "title": "ES6책",
+      "price": 1000,
+      "category": "book"
+    },
+    {
+      "id": "12",
+      "date": "0610",
+      "title": "ES6책2",
+      "price": 2000,
+      "category": "book"
+    },
+    {
+      "id": "13",
+      "date": "0610",
+      "title": "ES6책3",
+      "price": 3000,
+      "category": "book"
+    },
+    {
+      "id": "cc7c",
+      "date": "0610",
+      "title": "스페셜티블렌드",
+      "price": 3000,
+      "category": "food"
+    },
+    {
+      "id": "ec45",
+      "date": "0609",
+      "title": "전지한근",
+      "price": 3000,
+      "category": "food"
+    },
+    {
+      "id": "1acd",
+      "date": "0610",
+      "title": "백과사전",
+      "price": 45000,
+      "category": "book"
+    },
+    {
+      "id": "91ce",
+      "date": "0610",
+      "title": "44",
+      "price": 44,
+      "category": "food"
+    },
+    {
+      "id": "2e2d",
+      "date": "20240610",
+      "title": "4444",
+      "price": 4444444,
+      "category": "food"
+    }
+  ],
+  "category": [
+    "food",
+    "book"
+  ]
+}
