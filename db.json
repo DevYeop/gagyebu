@@ -55,10 +55,52 @@
       "title": "4444",
       "price": 4444444,
       "category": "food"
+    },
+    {
+      "id": "fdfb",
+      "date": "20240619",
+      "title": "전지한근",
+      "price": 6900,
+      "category": "food"
+    },
+    {
+      "id": "fdf1",
+      "date": "20240619",
+      "title": "다이소",
+      "price": 15000,
+      "category": "goods"
+    },
+    {
+      "id": "fdf1",
+      "date": "20240619",
+      "title": "국순당-막걸리",
+      "price": 2000,
+      "category": "alchol"
+    },
+    {
+      "id": "e1ae",
+      "date": "20240611",
+      "title": "국막2",
+      "price": 4000,
+      "category": "alchol"
     }
   ],
   "category": [
-    "food",
-    "book"
+    {
+      "key": 0,
+      "value": "food"
+    },
+    {
+      "key": 1,
+      "value": "book"
+    },
+    {
+      "key": 2,
+      "value": "goods"
+    },
+    {
+      "key": 3,
+      "value": "alchol"
+    }
   ]
 }
