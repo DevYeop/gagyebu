@@ -1,67 +1,18 @@
 {
   "gagye": [
     {
-      "id": "1",
-      "date": "0610",
-      "title": "ES6책",
-      "price": 1000,
-      "category": "book"
-    },
-    {
-      "id": "12",
-      "date": "0610",
-      "title": "ES6책2",
-      "price": 2000,
-      "category": "book"
-    },
-    {
-      "id": "13",
-      "date": "0610",
-      "title": "ES6책3",
-      "price": 3000,
-      "category": "book"
-    },
-    {
-      "id": "cc7c",
-      "date": "0610",
-      "title": "스페셜티블렌드",
-      "price": 3000,
-      "category": "food"
-    },
-    {
       "id": "ec45",
-      "date": "0609",
+      "date": "20240610",
       "title": "전지한근",
       "price": 3000,
       "category": "food"
     },
     {
-      "id": "1acd",
-      "date": "0610",
+      "date": "20240521",
       "title": "백과사전",
       "price": 45000,
-      "category": "book"
-    },
-    {
-      "id": "91ce",
-      "date": "0610",
-      "title": "44",
-      "price": 44,
-      "category": "food"
-    },
-    {
-      "id": "2e2d",
-      "date": "20240610",
-      "title": "4444",
-      "price": 4444444,
-      "category": "food"
-    },
-    {
-      "id": "fdfb",
-      "date": "20240619",
-      "title": "전지한근",
-      "price": 6900,
-      "category": "food"
+      "category": "책",
+      "id": "1acd"
     },
     {
       "id": "fdf1",
@@ -71,36 +22,264 @@
       "category": "goods"
     },
     {
-      "id": "fdf1",
-      "date": "20240619",
-      "title": "국순당-막걸리",
-      "price": 2000,
-      "category": "alchol"
+      "date": "20240612",
+      "title": "조던피터슨책",
+      "price": 33334444,
+      "category": "책",
+      "id": "9093"
     },
     {
-      "id": "e1ae",
-      "date": "20240611",
+      "date": "20240613",
+      "title": "삽겸살1근",
+      "price": 12900,
+      "category": "food",
+      "id": "4add"
+    },
+    {
+      "id": "948e",
+      "date": "20240613",
+      "title": "돼지고기",
+      "price": 30000,
+      "category": "food"
+    },
+    {
+      "id": "8e21",
+      "date": "20240521",
+      "title": "목살1근",
+      "price": 4444,
+      "category": "책"
+    },
+    {
+      "id": "f561",
+      "date": "20240521",
+      "title": "국어사전",
+      "price": 13500,
+      "category": "책"
+    },
+    {
+      "id": "c4a1",
+      "date": "20240606",
+      "title": "콜라",
+      "price": 1300,
+      "category": "food"
+    },
+    {
+      "id": "0340",
+      "date": "20241225",
+      "title": "크리스마스",
+      "price": 12500,
+      "category": "food"
+    },
+    {
+      "id": "0bd0",
+      "date": "20241225",
+      "title": "한식부페",
+      "price": 3500,
+      "category": "food"
+    },
+    {
+      "id": "6643",
+      "date": "20241119",
+      "title": "덕근아 축하한다",
+      "price": 13500,
+      "category": "food"
+    },
+    {
+      "id": "5d06",
+      "date": "20241119",
+      "title": "다시한번더",
+      "price": 1300,
+      "category": "food"
+    },
+    {
+      "id": "ac2c",
+      "date": "20241119",
+      "title": "zzzz",
+      "price": 133,
+      "category": "food"
+    },
+    {
+      "id": "df14",
+      "date": "20240501",
+      "title": "다이소",
+      "price": 3333,
+      "category": "food"
+    },
+    {
+      "id": "2ed3",
+      "date": "20240215",
+      "title": "연도도 처리해야하네",
+      "price": 13500,
+      "category": "food"
+    },
+    {
+      "id": "9e9f",
+      "date": "20240612",
+      "title": "목살1근",
+      "price": 11111,
+      "category": "책"
+    },
+    {
+      "date": "20240613",
+      "title": "음식",
+      "price": 10500,
+      "category": "food",
+      "id": "67ba"
+    },
+    {
+      "date": "20240613",
+      "title": "닭고기2개",
+      "price": 5800,
+      "category": "food",
+      "id": "8c5d"
+    },
+    {
+      "id": "3257",
+      "date": "20240613",
+      "title": "조던피터슨책",
+      "price": 13000,
+      "category": "책"
+    },
+    {
+      "id": "33e5",
+      "date": "20240613",
+      "title": "222",
+      "price": 222222222,
+      "category": "책"
+    },
+    {
+      "date": "20240613",
+      "title": "222222222",
+      "price": 22222222,
+      "category": "food",
+      "id": "7bd9"
+    },
+    {
+      "id": "9a02",
+      "date": "20240613",
+      "title": "4444444444444",
+      "price": 444444444,
+      "category": "food"
+    },
+    {
+      "date": "20240613",
+      "title": "444444444111111111",
+      "price": 4444444,
+      "category": "food",
+      "id": "6b83"
+    },
+    {
+      "id": "349f",
+      "date": "20240613",
+      "title": "1111111",
+      "price": 11111,
+      "category": "food"
+    },
+    {
+      "id": "1c22",
+      "date": "20240613",
+      "title": "222222",
+      "price": 2222,
+      "category": "goods"
+    },
+    {
+      "id": "c29c",
+      "date": "20240613",
+      "title": "11111111111",
+      "price": 11111111111111,
+      "category": "goods"
+    },
+    {
+      "date": "20240613",
+      "title": "zzzzzzzzzzz",
+      "price": 4444,
+      "category": "책",
+      "id": "8ad1"
+    },
+    {
+      "id": "414d",
+      "date": "20240613",
+      "title": "다이소",
+      "price": 1111,
+      "category": "책"
+    },
+    {
+      "id": "7784",
+      "date": "20240613",
       "title": "국막2",
       "price": 4000,
       "category": "alchol"
+    },
+    {
+      "id": "db4e",
+      "date": "20240613",
+      "title": "111111111",
+      "price": 111111,
+      "category": "food"
+    },
+    {
+      "id": "181e",
+      "date": "20240613",
+      "title": "3333",
+      "price": 3333333333,
+      "category": "food"
+    },
+    {
+      "id": "f927",
+      "date": "20240613",
+      "title": "111",
+      "price": 1111111111,
+      "category": "food"
+    },
+    {
+      "id": "158e",
+      "date": "20240613",
+      "title": "aaaaaaasfaaaaaaaaa",
+      "price": "4444444444",
+      "category": "food"
+    },
+    {
+      "id": "8b9e",
+      "date": "20240613",
+      "title": "111",
+      "price": "111111111",
+      "category": "food"
+    },
+    {
+      "id": "6797",
+      "date": "20240613",
+      "title": "1111111",
+      "price": "1",
+      "category": "goods"
+    },
+    {
+      "id": "20ef",
+      "date": "20240613",
+      "title": "1111111111111",
+      "price": "1111",
+      "category": "goods"
     }
   ],
   "category": [
     {
       "key": 0,
-      "value": "food"
+      "value": "food",
+      "id": "1e01"
     },
     {
       "key": 1,
-      "value": "book"
+      "value": "책",
+      "id": "961b"
     },
     {
       "key": 2,
-      "value": "goods"
+      "value": "goods",
+      "id": "8aed"
     },
     {
       "key": 3,
-      "value": "alchol"
+      "value": "alchol",
+      "id": "cda6"
     }
   ]
 }

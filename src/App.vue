@@ -1,5 +1,6 @@
 <template>
   <HomeView />
+
   <!-- <Header /> -->
   <!-- <router-view /> -->
 

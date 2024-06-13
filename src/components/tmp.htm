@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Rotation Input Reset</title>
+    <style>
+        .container {
+            margin: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input {
+            display: block;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        .rotate {
+            transition: transform 0.6s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" class="form-control">
+        </div>
+        <button id="submit-button" class="submit-button">Submit</button>
+    </div>
+
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function () {
+            const inputs = document.querySelectorAll('.form-control');
+
+            inputs.forEach(input => {
+                // Add rotation class
+                input.classList.add('rotate');
+
+                // Trigger a reflow to restart the animation
+                input.offsetWidth;
+
+                // Apply rotation
+                input.style.transform = 'rotateY(360deg)';
+
+                // Reset value after animation ends
+                setTimeout(() => {
+                    input.value = '';
+                    input.style.transform = 'none';
+                    input.classList.remove('rotate');
+                }, 600); // Match the duration of the CSS transition
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,6 +1,8 @@
 import { ref, reactive, computed } from 'vue';
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import moment from 'moment';
+import { Alert } from 'bootstrap';
 
 /**
  * 모드에 따라서
@@ -10,17 +12,59 @@ import axios from 'axios';
 export const useGagyeListStore = defineStore('todoList', () => {
   const BASE_URI = '/api/gagye';
   // state를 직접 return 하는건 비권장
+
+  const today = moment();
+  const monthState = parseInt(today.format('MM'));
+
   const state = reactive({
     gagyeList: [],
     categoryList: [],
+    month: monthState,
+    id: '',
+    title: '',
+    price: '',
+    date: moment().format('YYYY-MM-DD'),
+    category: 'food',
+    mode: 'input',
   });
+
+  const sortByDate = (data) => {
+    const sortedData = data.sort((a, b) => {
+      if (a.date < b.date) return -1;
+      if (a.date > b.date) return 1;
+      return 0;
+    });
+    return sortedData;
+  };
 
   const fetchGagyeList = async () => {
     try {
       const response = await axios.get(BASE_URI);
-      console.log(response);
       if (response.statusText === 'OK') {
-        state.gagyeList = response.data;
+        state.gagyeList = sortByDate(response.data);
+      } else {
+        alert('데이터 조회 실패');
+      }
+    } catch (error) {
+      alert('에러발생 :' + error);
+    }
+  };
+
+  const getGagyeListByMonth = async (month) => {
+    if (month < 1 || month > 12) {
+      alert('어딜');
+
+      return;
+    }
+    try {
+      const response = await axios.get(BASE_URI);
+      if (response.statusText === 'OK') {
+        const gagyeListFull = response.data;
+        const filtered = gagyeListFull.filter(
+          (item) => moment(item.date).format('MM') == month
+        );
+        state.gagyeList = filtered;
+        state.month = parseInt(month);
       } else {
         alert('데이터 조회 실패');
       }
@@ -36,7 +80,6 @@ export const useGagyeListStore = defineStore('todoList', () => {
 
       if (response.statusText === 'OK') {
         state.categoryList = response.data;
-        console.log('fetchCategoryList', response.data);
       } else {
         alert('데이터 조회 실패');
       }
@@ -45,39 +88,52 @@ export const useGagyeListStore = defineStore('todoList', () => {
     }
   };
 
-  // 새로운 TodoItem을 추가합니다.
-  // const addTodo = async ({ todo, desc }, successCallback) => {
-  //   try {
-  //     const payload = { todo, desc };
-  //     const response = await axios.post(BASE_URI, payload);
-  //     if (response.statusText === 'Created') {
-  //       state.todoList.push({ ...response.data, done: false });
-  //       successCallback();
-  //     } else {
-  //       alert('Todo 추가 실패');
-  //     }
-  //   } catch (error) {
-  //     alert('에러발생 :' + error);
-  //   }
-  // };
-
-  const addGagye = async (
-    { date, title, price, category },
-    successCallback
-  ) => {
+  const addGagye = async ({ date, title, price, category }) => {
     try {
-      console.log(title, price);
       const payload = { date, title, price, category };
       const response = await axios.post(BASE_URI, payload);
       if (response.statusText === 'Created') {
         state.gagyeList.push({ ...response.data, done: false });
-        // successCallback();
+        state.month = parseInt(moment(date).format('M'));
       } else {
         alert('Todo 추가 실패');
       }
     } catch (error) {
       alert('에러발생 :' + error);
     }
+  };
+
+  const editGagye = async ({ date, title, price, category }) => {
+    try {
+      const payload = { date, title, price, category };
+      console.log('payload:', payload);
+      const response = await axios.put(BASE_URI + `/${state.id}`, payload);
+      console.log('response', response);
+      if (response.statusText === 'OK') {
+        fetchGagyeList();
+        cancelEdit();
+      } else {
+        alert('Todo 추가 실패');
+      }
+    } catch (error) {
+      if (error.code === 'ERR_BAD_REQUEST') {
+        alert('지우고 수정완료하면 어카니 :(');
+      }
+      // alert('에러발생 :' + error);
+    }
+  };
+
+  const selectForEdit = (item) => {
+    state.id = item.id;
+    state.date = moment(item.date).format('YYYY-MM-DD');
+    state.title = item.title;
+    state.price = item.price;
+    state.category = item.category;
+    state.mode = 'edit';
+  };
+
+  const cancelEdit = () => {
+    state.mode = 'input';
   };
 
   // 기존 TodoItem을 변경합니다.
@@ -99,29 +155,11 @@ export const useGagyeListStore = defineStore('todoList', () => {
     }
   };
 
-  //기존 TodoItem을 삭제합니다.
-  const deleteTodo = async (id) => {
+  const deleteItem = async (id) => {
     try {
-      const response = await axios.delete(BASE_URI + `/${id}`);
+      const response = await axios.delete(BASE_URI + `/${id}`); // patch를 한다면?
       if (response.statusText === 'OK') {
-        let index = state.gagyeList.findIndex((todo) => todo.id === id);
-        state.gagyeList.splice(index, 1);
-      } else {
-        alert('Todo 삭제 실패');
-      }
-    } catch (error) {
-      alert('에러발생 :' + error);
-    }
-  };
-
-  //기존 TodoItem의 완료여부(done) 값을 토글합니다.
-  const toggleDone = async (id) => {
-    try {
-      let todo = state.gagyeList.find((todo) => todo.id === id);
-      let payload = { ...todo, done: !todo.done }; // 또 스프레드 연산자
-      const response = await axios.put(BASE_URI + `/${id}`, payload); // patch를 한다면?
-      if (response.statusText === 'OK') {
-        todo.done = payload.done;
+        fetchGagyeList();
       } else {
         alert('Todo 완료 변경 실패');
       }
@@ -130,26 +168,74 @@ export const useGagyeListStore = defineStore('todoList', () => {
     }
   };
 
-  // state를 직접 return 하는건 비권장이므로, 아래와 같이 함
   const gagyeList = computed(() => state.gagyeList);
+  const gagyeListLength = computed(() => state.gagyeList.length);
   const categoryList = computed(() => state.categoryList);
   const isLoading = computed(() => state.isLoading);
 
-  // 계산된 속성
-  const doneCount = computed(() => {
-    return state.gagyeList.filter((todoItem) => todoItem.done === true).length;
+  const foodTotal = computed(() => {
+    const filtered = state.gagyeList.filter((item) => item.category == 'food');
+    let total = 0;
+    filtered.map((x) => (total += parseInt(x.price)));
+    return total;
+  });
+
+  const bookTotal = computed(() => {
+    const filtered = state.gagyeList.filter((item) => item.category == 'book');
+    let total = 0;
+    filtered.map((x) => (total += x.price));
+    return total;
+  });
+
+  const month = computed(() => state.month);
+  const mode = computed(() => state.mode);
+
+  const inputTitle = computed({
+    get: () => state.title,
+    set: (newValue) => {
+      state.title = newValue;
+    },
+  });
+  const inputPrice = computed({
+    get: () => state.price,
+    set: (newValue) => {
+      state.price = newValue;
+    },
+  });
+  const inputDate = computed({
+    get: () => state.date,
+    set: (newValue) => {
+      state.date = newValue;
+    },
+  });
+  const inputCategory = computed({
+    get: () => state.category,
+    set: (newValue) => {
+      state.category = newValue;
+    },
   });
 
   return {
+    inputTitle,
+    inputPrice,
+    inputDate,
+    inputCategory,
     gagyeList,
     categoryList,
+    foodTotal,
+    bookTotal,
+    month,
     isLoading,
-    doneCount,
+    mode,
     fetchGagyeList,
     fetchCategoryList,
     addGagye,
-    deleteTodo,
     updateTodo,
-    toggleDone,
+    deleteItem,
+    getGagyeListByMonth,
+    selectForEdit,
+    cancelEdit,
+    editGagye,
+    gagyeListLength,
   };
 });

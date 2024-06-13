@@ -1,55 +1,60 @@
 <template>
   <li
-    :class="
-      false ? 'list-group-item list-group-item-success' : 'list-group-item'
+    v-if="
+      item.category === category &&
+      moment(item.date).format('M') == currentMonth
     "
-    id="container"
-    v-if="item.category === category"
+    @click.stop="selectForEdit(item)"
+    @mouseover="isHoverDel = true"
+    @mouseout="isHoverDel = false"
   >
     <span :class="false ? 'todo-done pointer' : 'pointer'">
-      {{ item.date }}
+      {{ moment(item.date).format('MM/DD') }}
       {{ item.title }}
     </span>
 
     <span :class="false ? 'todo-done pointer' : 'pointer'">
       {{ item.price }}
-      {{ item.category }}
     </span>
 
-    <!-- <span
-      :class="
-        isHoverDel
-          ? 'float-end badge bg-danger pointer m-1'
-          : 'float-end badge bg-secondary pointer m-1'
-      "
-      @click.stop="deleteTodo(todoItem.id)"
-      @mouseover="isHoverDel = true"
-      @mouseleave="isHoverDel = false"
-    >
-      삭제</span
-    > -->
+    <span @click.stop="deleteItem(item.id)" v-show="isHoverDel"> 삭제</span>
   </li>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
+import moment from 'moment';
+import { useGagyeListStore } from '@/stores/gagyeList';
 
-// import { useTodoListStore } from '@/stores/todoList.js';
+const { deleteItem, selectForEdit } = useGagyeListStore();
 
-// const todoListStore = useTodoListStore();
+const isRotating = ref(false);
+const isHoverDel = ref(false);
+
+const gagyeListStore = useGagyeListStore();
+const currentMonth = computed(() => gagyeListStore.month);
 
 defineProps({
-  item: { Type: Object, required: true },
-  category: { Type: String, required: false },
+  item: { type: Object, required: true },
+  category: { type: String, required: false },
 });
 
-// const router = useRouter();
-// // const { deleteTodo, toggleDone } = inject('actions');
-// const { deleteTodo, toggleDone } = todoListStore;
-
-const isHoverDel = ref(false);
-const isHoverEdit = ref(false);
+// 컴포넌트가 마운트될 때 회전 애니메이션 효과 주기
+onMounted(() => {
+  isRotating.value = true;
+  setTimeout(() => {
+    isRotating.value = false;
+  }, 600); // 애니메이션 시간과 일치시킴
+});
 </script>
 
-<style scoped></style>
+<style scoped>
+.rotate {
+  transition: transform 0.6s;
+  transform: rotateX(360deg);
+}
+
+#container {
+  background-color: blue;
+}
+</style>
